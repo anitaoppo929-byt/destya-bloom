@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Gallery | Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">🌸 Bloom Gallery</a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+</header>
+
+<section class="page-banner">
+    <p class="subtitle">OUR COLLECTION</p>
+    <h1>Flower Gallery</h1>
+    <p>Explore the beauty of different flowers.</p>
+</section>
+
+<section class="section">
+
+    <div class="search-box">
+        <input type="text" id="searchFlower"
+               placeholder="Cari nama bunga...">
+    </div>
+
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="mawar">Mawar</button>
+        <button class="filter-btn" data-category="tulip">Tulip</button>
+        <button class="filter-btn" data-category="matahari">Matahari</button>
+        <button class="filter-btn" data-category="anggrek">Anggrek</button>
+        <button class="filter-btn" data-category="lavender">Lavender</button>
+    </div>
+
+    <div class="flower-grid" id="galleryContainer"></div>
+
+    <p id="emptyMessage" class="empty-message">
+        Bunga tidak ditemukan.
+    </p>
+
+</section>
+
+<!-- Popup gambar -->
+<div class="modal" id="flowerModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">×</button>
+        <img id="modalImage" src="" alt="Detail bunga">
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Bloom Gallery. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
