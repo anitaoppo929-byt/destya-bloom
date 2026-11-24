@@ -1,8 +1,9 @@
 
 /* =========================
-   BLOOM GALLERY
+   DESTYA BLOOM
    MAIN JAVASCRIPT
 ========================= */
+
 
 // 1. DARK MODE DAN LIGHT MODE
 
@@ -27,7 +28,9 @@ function updateThemeButton() {
     }
 }
 
+
 // Memuat tema yang sebelumnya dipilih
+
 document.addEventListener("DOMContentLoaded", function () {
 
     if (localStorage.getItem("bloomTheme") === "dark") {
@@ -38,51 +41,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
     initializeGallery();
     initializeContact();
+
 });
 
 
 // 2. DATA KOLEKSI BUNGA
 
-
 const flowers = [
     {
         name: "Red Rose",
         category: "mawar",
-        image: "images/Red Rose.jpeg",
+        image: "Red Rose.jpeg",
         description: "Bunga mawar merah melambangkan cinta dan keindahan."
     },
     {
         name: "Pink Rose",
         category: "mawar",
-        image: "images/Pink Rose.jpg",
+        image: "Pink Rose.jpg",
         description: "Mawar pink memiliki warna lembut dan cantik."
     },
     {
         name: "Tulip",
         category: "tulip",
-        image: "images/Tulip.jpg",
+        image: "Tulip.jpg",
         description: "Bunga tulip memiliki bentuk yang elegan."
     },
     {
         name: "Sunflower",
         category: "matahari",
-        image: "images/Sunflower.jpg",
+        image: "Sunflower.jpg",
         description: "Bunga matahari memiliki warna kuning yang cerah."
     },
     {
         name: "Orchid",
         category: "anggrek",
-        image: "images/Orchid.jpg",
+        image: "Orchid.jpg",
         description: "Bunga anggrek memiliki bentuk yang unik."
     },
     {
         name: "Lavender",
         category: "lavender",
-        image: "images/Lavender.jpg",
+        image: "Lavender.jpg",
         description: "Lavender memiliki warna ungu yang indah."
     }
 ];
-
 
 
 // 3. MENAMPILKAN KOLEKSI BUNGA
@@ -112,15 +114,18 @@ function displayFlowers(data) {
             </div>
         `;
 
+        // Tombol untuk melihat detail bunga
         card.querySelector(".detail-btn").addEventListener("click", function() {
             openModal(flower);
         });
 
+        // Klik gambar untuk melihat detail
         card.querySelector("img").addEventListener("click", function() {
             openModal(flower);
         });
 
         galleryContainer.appendChild(card);
+
     });
 
     const emptyMessage = document.getElementById("emptyMessage");
@@ -129,6 +134,7 @@ function displayFlowers(data) {
         emptyMessage.style.display =
             data.length === 0 ? "block" : "none";
     }
+
 }
 
 
@@ -155,13 +161,17 @@ function initializeGallery() {
             const category = button.dataset.category;
 
             if (category === "all") {
+
                 displayFlowers(flowers);
+
             } else {
+
                 const filteredFlowers = flowers.filter(function(flower) {
                     return flower.category === category;
                 });
 
                 displayFlowers(filteredFlowers);
+
             }
 
         });
@@ -173,30 +183,34 @@ function initializeGallery() {
 
     const searchInput = document.getElementById("searchFlower");
 
-    searchInput.addEventListener("input", function() {
+    if (searchInput) {
 
-        const keyword = searchInput.value.toLowerCase();
+        searchInput.addEventListener("input", function() {
 
-        const activeButton = document.querySelector(".filter-btn.active");
+            const keyword = searchInput.value.toLowerCase();
 
-        const category = activeButton
-            ? activeButton.dataset.category
-            : "all";
+            const activeButton = document.querySelector(".filter-btn.active");
 
-        const results = flowers.filter(function(flower) {
+            const category = activeButton
+                ? activeButton.dataset.category
+                : "all";
 
-            const matchName = flower.name.toLowerCase().includes(keyword);
+            const results = flowers.filter(function(flower) {
 
-            const matchCategory =
-                category === "all" || flower.category === category;
+                const matchName = flower.name.toLowerCase().includes(keyword);
 
-            return matchName && matchCategory;
+                const matchCategory =
+                    category === "all" || flower.category === category;
+
+                return matchName && matchCategory;
+
+            });
+
+            displayFlowers(results);
 
         });
 
-        displayFlowers(results);
-
-    });
+    }
 
 }
 
@@ -210,13 +224,16 @@ function openModal(flower) {
     if (!modal) return;
 
     document.getElementById("modalImage").src = flower.image;
+
     document.getElementById("modalTitle").textContent = flower.name;
+
     document.getElementById("modalDescription").textContent =
         flower.description;
 
     modal.classList.add("show");
 
 }
+
 
 function closeModal() {
 
@@ -240,6 +257,7 @@ document.addEventListener("click", function(event) {
     }
 
 });
+
 
 // Menutup popup dengan tombol Escape
 
@@ -265,8 +283,11 @@ function initializeContact() {
         event.preventDefault();
 
         const name = document.getElementById("name").value.trim();
+
         const email = document.getElementById("email").value.trim();
+
         const message = document.getElementById("message").value.trim();
+
 
         if (name === "" || email === "" || message === "") {
 
@@ -275,6 +296,7 @@ function initializeContact() {
             return;
 
         }
+
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -285,6 +307,7 @@ function initializeContact() {
             return;
 
         }
+
 
         alert(
             "Terima kasih, " + name +
